@@ -87,6 +87,44 @@ class Display:
       self.end_line_opposite = "\r"
     else:
       self.end_line_opposite = "\n"
+    self.write_uni_file = False
+    self.write_hex_file = False
+    self.uni_file = ""
+    self.hex_file = ""
+    self.length_to_write = 100
+
+  def create_files(self, file_name):
+    if "." in file_name:
+      file_name = file_name[:file_name.find(".")]
+    self.uni_file = file_name + "_UNICODE.txt"
+    self.hex_file = file_name + "_HEX.txt"
+    if self.write_uni_file:
+      with open(self.uni_file, "w") as file:
+        pass
+    if self.write_hex_file:
+      with open(self.hex_file, "w") as file:
+        pass
+
+  def save_info_to_files(self):
+    if self.write_uni_file or self.write_hex_file:
+      if self.length_uni >= self.length_to_write:
+        self.write_to_files()
+      
+  def write_to_files(self):
+    if self.write_uni_file:
+      with open(self.uni_file, "a") as file:
+        for i in range(0,self.length_uni):
+          item = self.content_unicode.pop(0)
+          to_write = item[0] + ": " + item[2] + "\r\n"
+          file.write(to_write)
+      self.length_uni = 0
+    if self.write_hex_file:
+      with open(self.hex_file, "a") as file:
+        for i in range(0,self.length_hex):
+          item = self.content_hex.pop(0)
+          to_write = item[0] + ": " + item[2] + "\r\n"
+          file.write(to_write)
+      self.length_hex = 0
 
   def change_font_size(self, new_font_size):
     self.delete_contents()

@@ -46,7 +46,6 @@ class DisplayPanel():
     posx = self.posx + self.s_left  
     return Boton(posx, self.items_pos_y, self.items_sizex, self.items_sizey , "CLEAR",font_size=self.font_size)
 
-
   def generate_checkbox(self):
 
     posx = self.posx +self.s_left + self.items_sizex + self.s_between 
@@ -99,6 +98,13 @@ class DisplayPanel():
     posy = self.posy + self.s_top
     return Display(posx, posy, self.sizex -2*self.s_left, self.sizey - self.s_bottom - self.s_top)
 
+  def set_file_settings(self, file_name, uni_active, hex_active):
+    self.display.write_uni_file = uni_active
+    self.display.write_hex_file = hex_active
+    self.display.create_files(file_name)
+
+  def save_info_to_files(self):
+    self.display.save_info_to_files()
 
   def check_inside(self, pos):
     """
