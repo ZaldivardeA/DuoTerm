@@ -9,20 +9,20 @@ def generate_text():
 
 class TestConfigPanel:
 
-  def __init__(self, posx, posy, sizex, sizey, background_c=(220,220,220), font_size=17, text_color=(0,0,0)):
+  def __init__(self, posx, posy, sizex, sizey, background_c=(220,220,220), text_color=(0,0,0)):
     self.posx = posx
     self.posy = posy
     self.sizex = sizex
     self.sizey = sizey
-    self.font_size = font_size
     self.text_color = text_color
+    self.font_size = round(self.sizex * 0.047619047)
     self.font = pygame.font.SysFont("times new roman", self.font_size, False)
-    self.s_left = 6
-    self.s_text_inter = 5
-    self.s_top = 6
-    self.s_between = 6
-    self.items_sizey = 30
-    self.items_sizex = 200
+    self.s_left = round(self.sizex*0.01680672)
+    self.s_text_inter = round(self.sizex * 0.0140056022)
+    self.s_top = round(self.sizey*0.031578947)
+    self.s_between = self.s_top
+    self.items_sizey = round(self.sizey*0.157894736)
+    self.items_sizex = round(self.sizex*0.560224089)
     self.back_color = background_c
     self.textBoxes_text = generate_text()
     self.textBoxes_text_len = len(self.textBoxes_text)
@@ -96,12 +96,12 @@ class TestConfigPanel:
           self.close_button.released()
           self.close_button.is_hover = False
           return "CLOSE"
-        for textBox in self.textBoxes:
-          textBox.check_click(pos)
         for i in range(0,2):
           ans = self.switches[i].check_click(pos)
           if ans != "NONE":
             self.switches_states[i] = ans == "LEFT"
+      for textBox in self.textBoxes:
+          textBox.check_click(pos)
     return None
 
   def event_MOUSEMOTION(self, pos):
