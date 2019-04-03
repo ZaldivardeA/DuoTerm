@@ -62,15 +62,15 @@ class ConfigPanel:
     self.open_close.return_to_default()
 
   def generate_config_panel(self):
-    posx = self.posx + 50
-    posy = self.posy
-    sizex = self.sizex//2
-    sizey = self.sizey
+    sizex = round(self.sizex*0.42)
+    sizey = round(self.sizey*0.7)
+    posx = self.posx + round(self.sizex*0.51)
+    posy = self.posy + round(self.sizey*0.1)
     return TestConfigPanel(posx, posy, sizex, sizey)
 
   def generate_config_buttton(self):
     posx = self.sizex + self.posx - self.s_left - round(self.sizex*0.0588928)
-    posy = self.posy + self.s_top + 2*(self.items_sizey + self.s_between)
+    posy = self.posy + round(self.sizey * 0.75)
     sizex = round(self.sizex*0.0588928)
     sizey = sizex
     return ImgBoton(posx, posy, sizex, sizey, color=(150,150,150))
