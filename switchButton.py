@@ -4,7 +4,7 @@ class SwitchButton():
   """
   Define una clase que es un boton con dos opciones
   """
-  def __init__(self,posx,posy,sizex,sizey,text1="",text2="",center = -1 ,color=(150,150,150),color_h=(100,100,250),text_color=(0,0,0),color_click=(250,10,10), font_size=20, act_left = 1, act_right = 0):
+  def __init__(self,posx,posy,sizex,sizey,text1="",text2="",center = -1 ,color=(150,150,150),color_h=(100,100,250),text_color=(0,0,0),color_click=(250,10,10), font_size=20, act_left = True, act_right = False):
     self.posx = posx
     self.posy = posy
     self.sizey = sizey
@@ -22,8 +22,8 @@ class SwitchButton():
     self.act_left = act_left
     self.act_right = act_right
     self.default = (act_left, act_right)
-    self.hoverL = 0
-    self.hoverR = 0
+    self.hoverL = False
+    self.hoverR = False
 
   def check_if_inside(self,pos):
     """
@@ -45,15 +45,15 @@ class SwitchButton():
     if self.check_if_inside(pos):
       if self.check_if_Left(pos):
         if not self.act_left:
-          self.act_left = 1
-          self.act_right = 0
+          self.act_left = True
+          self.act_right = False
           return "LEFT"
         else:
           return "NONE"
       if self.check_if_Right(pos):	
         if not self.act_right:
-          self.act_left = 0
-          self.act_right = 1
+          self.act_left = False
+          self.act_right = True
           return "RIGTH"
         else:
           return "NONE"
@@ -65,14 +65,14 @@ class SwitchButton():
     """
     if self.check_if_inside(pos):
       if self.check_if_Left(pos):
-        self.hoverL = 1
-        self.hoverR = 0
+        self.hoverL = True
+        self.hoverR = False
       elif self.check_if_Right(pos):	
-        self.hoverR = 1
-        self.hoverL = 0
+        self.hoverR = True
+        self.hoverL = False
     else:
-      self.hoverR = 0
-      self.hoverL = 0
+      self.hoverR = False
+      self.hoverL = False
 
   def check_if_Left(self,pos):
     """
@@ -90,18 +90,18 @@ class SwitchButton():
       
   def paint(self,screen):
      
-    if self.hoverR == 1 and self.hoverL == 0:
+    if self.hoverR and not self.hoverL:
       change_colorR = self.color_hover
       change_colorL = self.color
-    elif self.hoverR == 0 and self.hoverL == 1:
+    elif not self.hoverR and self.hoverL:
       change_colorL = self.color_hover
       change_colorR = self.color
     else:
       change_colorL = self.color
       change_colorR = self.color
 
-    if (self.act_left != 0 or self.act_right != 0):
-      if self.act_right == 1:
+    if (self.act_left or self.act_right):
+      if self.act_right:
         change_colorR = self.color_click
       else: 
         change_colorL = self.color_click
