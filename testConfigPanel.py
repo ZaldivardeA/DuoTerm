@@ -55,7 +55,7 @@ class TestConfigPanel:
     posy = self.posy + self.s_top + (self.items_sizey+self.s_between)*2
     for i in range(0,2):
       posy += (self.items_sizey+self.s_between)*i
-      group.append(SwitchButton(posx, posy, self.items_sizex, self.items_sizey, "Yes", "No", act_left = 0, act_right = 1))
+      group.append(SwitchButton(posx, posy, self.items_sizex, self.items_sizey, "Yes", "No", act_left = False, act_right = True))
     return group[:]
 
   def generate_button(self):
@@ -66,6 +66,21 @@ class TestConfigPanel:
 
   def set_activated(self, on_off):
     self.active = on_off
+
+  def get_settings(self):
+    if self.switches[0].act_left or self.switches[1].act_left:
+      if len(self.textBoxes[0].text) > 0:
+        file_name = self.textBoxes[0].text
+      else:
+        return -4 # invalid file name error
+      try:
+        number_lines = int(self.textBoxes[1].text)
+      except:
+        return -5 # number of lines has to be an integer
+      uni_active = self.switches[0].act_left
+      hex_active = self.switches[1].act_left
+      return [file_name, number_lines, uni_active, hex_active]
+    return None
 
   def check_inside(self, pos):
     x, y = pos
