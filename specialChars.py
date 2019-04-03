@@ -1,0 +1,6 @@
+
+special_chars = {chr(0): "<NUL>", chr(1): "<SOH>", chr(2): "<STX>", chr(3): "<ETX>", chr(4): "<EOT>", chr(5): "<ENQ>", chr(6): "<ACK>", chr(7): "<BEL>", chr(8): "<BS>", chr(9): "<HT>", chr(10): "<LF>", chr(11): "<VT>", chr(12): "<FF>", chr(13): "<CR>", chr(14): "<SO>", chr(15): "<SI>",
+chr(16): "<DLE>", chr(17): "<DC1>", chr(18): "<DC2>", chr(19): "<DC3>", chr(20): "<DC4>", chr(21): "<NAK>", chr(22): "<SYN>", chr(23): "<ETB>", chr(24): "<CAN>", chr(25): "<EM>", chr(26): "<SUB>", chr(27): "<ESC>", chr(28): "<FS>", chr(29): "<GS>", chr(30): "<RS>", chr(31): "<US>",
+chr(128): "<XXX>", chr(129): "<XXX>", chr(130): "<BPH>", chr(131): "<NBH>", chr(132): "<IND>", chr(133): "<NEL>", chr(134): "<SSA>", chr(135): "<ESA>", chr(136): "<HTS>", chr(137): "<HTJ>", chr(138): "<VTS>", chr(139): "<PLD>", chr(140): "<PLU>", chr(141): "<RI>", chr(142): "<SS2>", chr(143): "<SS3>",
+chr(144): "<DCS>", chr(145): "<PU1>", chr(146): "<PU2>", chr(147): "<STS>", chr(148): "<CCH>", chr(149): "<MW>", chr(150): "<SPA>", chr(151): "<EPA>", chr(152): "<SOS>", chr(153): "<XXX>", chr(154): "<SCI>", chr(155): "<CSI>", chr(156): "<ST>", chr(157): "<OSC>", chr(158): "<PM>", chr(159): "<APC>",
+chr(160): "<NBSP>"}
