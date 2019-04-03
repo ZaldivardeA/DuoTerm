@@ -7,9 +7,6 @@ import os
 pygame.init()
 
 class Window(object):
-  """
-  Clase para probar los componentes individualemnte
-  """
 
   def __init__(self, s_left=10, s_top=10, s_between=10, s_right=10, s_bottom = 6):
     pygame.display.set_caption("DuoTerm")
@@ -205,24 +202,30 @@ class Window(object):
     action2 = self.configPanel2.event_MOUSEBUTTONDOWN_LEFT(pygame.mouse.get_pos())
 
     if action1 != None:
-
       if action1 == -2: # open
         config = self.configPanel1.get_config()
         self.open_term1(config)
       elif action1 == -1: # close
         self.close_term1()
+      elif action1 == -3: # reset file settings
+        self.displayPanel1.reset_file_settings()
+      elif action1[0] == 0: # insertar la configuración de archivos
+        self.displayPanel1.set_file_settings(action1[1])
       elif self.term1.is_open:
-        self.send_in_term1(action1)
+        self.send_in_term1(action1[1])
 
     if action2 != None:
-
       if action2 == -2: #open
         config = self.configPanel2.get_config()
         self.open_term2(config)
       elif action2 == -1: #close
         self.close_term2()
+      elif action2 == -3:
+        self.displayPanel2.reset_file_settings()
+      elif action2[0] == 0:
+        self.displayPanel2.set_file_settings(action2[1])
       elif self.term2.is_open:
-        self.send_in_term2(action2)
+        self.send_in_term2(action2[1])
 
   def run(self):
     """

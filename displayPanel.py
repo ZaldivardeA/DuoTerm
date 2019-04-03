@@ -98,11 +98,17 @@ class DisplayPanel():
     posy = self.posy + self.s_top
     return Display(posx, posy, self.sizex -2*self.s_left, self.sizey - self.s_bottom - self.s_top)
 
-  def set_file_settings(self, file_name, num_lines, uni_active, hex_active):
+  def set_file_settings(self, settings):
+    file_name, num_lines, uni_active, hex_active = settings
     self.display.write_uni_file = uni_active
     self.display.write_hex_file = hex_active
     self.display.length_to_write = num_lines
     self.display.create_files(file_name)
+
+  def reset_file_settings(self):
+    self.display.write_uni_file = False
+    self.display.write_hex_file = False
+    self.display.length_to_write = 100
 
   def save_info_to_files(self):
     self.display.save_info_to_files()

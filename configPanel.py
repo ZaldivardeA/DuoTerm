@@ -190,7 +190,7 @@ class ConfigPanel:
     
   def process_test_close(self):
     self.test_config_button.is_hover = False
-
+  
   def event_KEYDOWN(self, key):
     if not self.test_config_panel.active:
       for textBox in self.group_textBox:
@@ -198,6 +198,14 @@ class ConfigPanel:
       self.textBoxSend.write_in_box(key)
     else:
       self.test_config_panel.event_KEYDOWN(key)
+
+  def process_test_settings(self, settings):
+    if settings == -4 or settings == -5:
+      self.console.process_error(settings)
+      return None
+    if settings == -3:
+      return -3
+    return [0,settings]
 
   def event_KEYUP(self):
     for textBox in self.group_textBox:
@@ -236,7 +244,7 @@ class ConfigPanel:
         else:
           text_send = self.textBoxSend.event_MOUSEBUTTONDOWN(pos)
           if text_send != None:
-            return text_send
+            return [1,text_send]
         if flag:
           selection = self.open_close.check_click(pos)
           if selection == "RIGTH":
@@ -258,6 +266,7 @@ class ConfigPanel:
       result = self.test_config_panel.event_MOUSEBUTTONDOWN_LEFT(pos)
       if result == "CLOSE":
         self.process_test_close()
+        return self.process_test_settings(self.test_config_panel.get_settings())
 
   def event_MOUSEMOTION(self, pos):
     if not self.test_config_panel.active:

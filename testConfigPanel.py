@@ -58,6 +58,12 @@ class TestConfigPanel:
       group.append(SwitchButton(posx, posy, self.items_sizex, self.items_sizey, "Yes", "No", act_left = False, act_right = True))
     return group[:]
 
+  def reset(self):
+    self.switches[0].act_left = False
+    self.switches[0].act_right = True
+    self.switches[1].act_left = False
+    self.switches[1].act_right = True
+
   def generate_button(self):
     posx = self.posx + self.s_left + self.s_text_inter + self.text_sizex
     posy = self.posy + self.s_top + (self.items_sizey+self.s_between)*4
@@ -72,15 +78,17 @@ class TestConfigPanel:
       if len(self.textBoxes[0].text) > 0:
         file_name = self.textBoxes[0].text
       else:
+        self.reset()
         return -4 # invalid file name error
       try:
         number_lines = int(self.textBoxes[1].text)
       except:
+        self.reset()
         return -5 # number of lines has to be an integer
       uni_active = self.switches[0].act_left
       hex_active = self.switches[1].act_left
       return [file_name, number_lines, uni_active, hex_active]
-    return None
+    return -3  # Reset File Settings
 
   def check_inside(self, pos):
     x, y = pos
@@ -112,9 +120,7 @@ class TestConfigPanel:
           self.close_button.is_hover = False
           return "CLOSE"
         for i in range(0,2):
-          ans = self.switches[i].check_click(pos)
-          if ans != "NONE":
-            self.switches_states[i] = ans == "LEFT"
+          self.switches[i].check_click(pos)
       for textBox in self.textBoxes:
           textBox.check_click(pos)
     return None

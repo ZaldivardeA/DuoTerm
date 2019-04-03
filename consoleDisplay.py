@@ -62,6 +62,12 @@ class ConsoleDisplay:
       message += "Port must be an integer."
     elif code == -3:  #No se pudo mandar el dato
       message += "Could not send data into terminal: " + info[0] + ".(Timeout reached) Make sure the device connected can handle incoming data"
+    elif code == -4:  #Nombre para el archivo no es válido
+      message += "Invalid file name"
+    elif code == -5:   #Numero de líneas tiene que se un entero
+      message += "Number of lines has to be an integer"
+    else:
+      message += "Unknown error"
     self.write(message) 
 
   def paint(self, screen):

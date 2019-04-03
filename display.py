@@ -221,13 +221,13 @@ class Display:
     return ans
 
   def write_to_display_uni(self, data):
-
+    self.save_info_to_files()
     data[1] = self.change_special_chars(data[1])
     self.write_data_uni(data)
     self.auto_scroll()
 
   def write_to_display_hex(self, data):
-
+    self.save_info_to_files()
     self.write_data_hex(data)
     self.auto_scroll()
 
