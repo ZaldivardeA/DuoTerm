@@ -59,8 +59,6 @@ class SwitchButton():
           return "NONE"
     return "NONE"
     
-
-
   def check_hover(self,pos):
     """
     Funcion que cambia el color del boton cuando el cursor pasa sobre este
@@ -76,7 +74,6 @@ class SwitchButton():
       self.hoverR = 0
       self.hoverL = 0
 
-
   def check_if_Left(self,pos):
     """
     Checa si el cursor esta en el lado izquierdo de los botones
@@ -91,8 +88,6 @@ class SwitchButton():
     x , y = pos
     return ( x >= (self.posx + self.center ))
       
-
-
   def paint(self,screen):
      
     if self.hoverR == 1 and self.hoverL == 0:
@@ -110,7 +105,6 @@ class SwitchButton():
         change_colorR = self.color_click
       else: 
         change_colorL = self.color_click
-
 
     pygame.draw.rect(screen, change_colorL, (self.posx, self.posy, self.sizex - self.center , self.sizey))
     pygame.draw.rect(screen, change_colorR, (self.posx + 1 + self.center, self.posy, self.sizex - self.center, self.sizey))
