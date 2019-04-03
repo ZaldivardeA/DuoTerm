@@ -1,6 +1,6 @@
 import pygame
 import os
-
+#cambio
 class Boton():
     """
     Define una clase que representa un botón y sus funcionalidades
