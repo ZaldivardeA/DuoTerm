@@ -236,7 +236,7 @@ class Display:
     aux = []
     while len(string) >= self.num_char_line:
       str_to_append = string[:self.num_char_line]
-      aux.append([in_out, "DONE", str_to_append])
+      aux.append([in_out, "NOTDONE", str_to_append])
       string = string[self.num_char_line:]
       added_length += 1
     return (aux, string, added_length)
@@ -246,6 +246,10 @@ class Display:
     count = 1   # variable para no agregarle el caracter a la última string
     added_length = 0
     out = []
+    if char_to_add != "":
+      done_notdone = "NOTDONE"
+    else:
+      done_notdone = "DONE"
     for string in data_list:
       if count < len_list:
         string += char_to_add
@@ -253,7 +257,7 @@ class Display:
       added_length += added_length_aux
       count += 1
       out.extend(aux)
-      out.append([in_out, "DONE", string])
+      out.append([in_out, done_notdone, string])
       added_length += 1
     out[-1][1] = "NOTDONE"
     return (out, added_length)
