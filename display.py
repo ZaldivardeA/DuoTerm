@@ -1,6 +1,23 @@
 import pygame
 import specialChars
 
+def write_to_files_out(file_name, length, content, prev):
+  with open(file_name, "a") as file:
+    for i in range(0,length):
+      to_write = ""
+      item = content.pop(0)
+      if item[2] != "":
+        if item[0] != prev[0] or prev[1]=="DONE":
+          if prev[1] != "DONE":
+            to_write += "\n"
+          to_write += "[" + item[0] + "]:"
+        to_write += item[2]
+        if item[1] == "DONE":
+          to_write += "\n"
+        file.write(to_write)
+        prev = item
+  return prev
+
 class SideBand:
   def __init__(self, posx, posy, sizex, sizey, native_posy, native_sizey, color=(200,200,200)):
     self.posx = posx
@@ -92,6 +109,8 @@ class Display:
     self.uni_file = ""
     self.hex_file = ""
     self.length_to_write = 100
+    self.uni_lwritten = ["NONE", "DONE"]
+    self.hex_lwritten = ["NONE", "DONE"]
 
   def create_files(self, file_name):
     if "." in file_name:
@@ -112,19 +131,13 @@ class Display:
       
   def write_to_files(self):
     if self.write_uni_file:
-      with open(self.uni_file, "a") as file:
-        for i in range(0,self.length_uni):
-          item = self.content_unicode.pop(0)
-          to_write = item[0] + ": " + item[2] + "\r\n"
-          file.write(to_write)
+      self.uni_lwritten = write_to_files_out(self.uni_file, self.length_uni, self.content_unicode, self.uni_lwritten)
       self.length_uni = 0
+      self.content_unicode = []
     if self.write_hex_file:
-      with open(self.hex_file, "a") as file:
-        for i in range(0,self.length_hex):
-          item = self.content_hex.pop(0)
-          to_write = item[0] + ": " + item[2] + "\r\n"
-          file.write(to_write)
+      self.hex_lwritten = write_to_files_out(self.hex_file, self.length_hex, self.content_hex, self.hex_lwritten)
       self.length_hex = 0
+      self.content_hex = []
 
   def change_font_size(self, new_font_size):
     self.delete_contents()
@@ -247,9 +260,9 @@ class Display:
     added_length = 0
     out = []
     if char_to_add != "":
-      done_notdone = "NOTDONE"
-    else:
       done_notdone = "DONE"
+    else:
+      done_notdone = "NOTDONE"
     for string in data_list:
       if count < len_list:
         string += char_to_add
