@@ -7,7 +7,7 @@ from consoleDisplay import ConsoleDisplay
 from boton import Boton
 from boton import ImgBoton
 from testConfigPanel import TestConfigPanel
-
+# cambio
 class ConfigPanel:
   """
   Implementa el panel de configuracion de la aplicacion con cuadros de texto, menus dropDown, botones y switches

@@ -3,7 +3,7 @@ from configPanel import ConfigPanel
 from displayPanel import DisplayPanel
 import serial
 import os
-
+#modificación
 pygame.init()
 
 class Window(object):
