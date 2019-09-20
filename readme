@@ -1,0 +1,15 @@
+
+
+DuoTerm is a terminal use for debugging serial applications.
+It is written in Python and is open-source.
+
+Requirements to run the app from source:
+  * Have Python 3 installed. (3.6) for best results.
+  * Install pygame module with the command:
+    pip install pygame
+  * Install the serial module:
+    pip install serial
+    
+DuoTerm is only compatible with Windows.
+
+Changes are welcome. (Pull-requests)
