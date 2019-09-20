@@ -9,7 +9,10 @@ Requirements to run the app from source:
     pip install pygame
   * Install the serial module:
     pip install serial
-    
+
+
+To run DuoTerm you just need to run the DuoTerm.py file as you would with any other python script.
+
 DuoTerm is only compatible with Windows.
 
 Changes are welcome. (Pull-requests)
